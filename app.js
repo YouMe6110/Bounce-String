@@ -1,3 +1,5 @@
+import {BounceString} from './bouncestring.js';
+
 class App {
     constructor() {
         this.canvas = document.createElement('canvas');
@@ -5,6 +7,11 @@ class App {
         this.ctx = this.canvas.getContext('2d');
 
         this.pixelRatio = window.devicePixelRatio > 1 ? 2 : 1;
+
+        this.strings = [];
+        this.moveX = -5000;
+        this.moveY = -5000;
+        this.isDown = false;
 
         window.addEventListener('rasize', this.resize.bind(this), false);
         this.resize();
@@ -23,6 +30,18 @@ class App {
         this.canvas.width = this.stageWidth * this.pixelRatio;
         this.canvas.height = this.stageHeight * this.pixelRatio;
         this.ctx.scale(this.pixelRatio, this.pixelRatio);
+
+        this.strings = [
+            new BounceString(
+                {
+                    x1: 50,
+                    y1: this.stageHeight / 2,
+                    x2: this.stageWidth - 50,
+                    y2: this.stageHeight / 2
+                },
+                '#ff5038'
+            )
+        ];
     }
 
     animate() {
@@ -32,15 +51,23 @@ class App {
     }
 
     onDown(e) {
-
+        this.isDown = true;
+        this.moveX = e.clientX;
+        this.moveY = e.clientY;
     }
 
     onMove(e) {
-
+        if (this.isDown) {
+            this.moveX = e.clientX;
+            this.moveY = e.clientY;
+        }
     }
 
     onUp(e) {
-        
+        this.isDown = false;
+
+        this.moveX = -5000;
+        this.moveY = -5000;
     }
 }
 
