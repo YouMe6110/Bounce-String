@@ -16,6 +16,8 @@ class App {
         window.addEventListener('rasize', this.resize.bind(this), false);
         this.resize();
 
+        this.ball = new this.ball(this.stageWidth, this.stageHeight, 70, 6);
+
         document.addEventListener('pointerdown', this.onDown.bind(this), false);
         document.addEventListener('pointermove', this.onMove.bind(this), false);
         document.addEventListener('pointerup', this.onUp.bind(this), false);
@@ -62,6 +64,8 @@ class App {
                 this.strings[i].animate(this.ctx, this.moveX, this.moveY);
             }
         }
+
+        this.ball.animate(this.ctx, this.stageWidth, this.stageHeight);
     }
 
     onDown(e) {
