@@ -1,4 +1,5 @@
 import { BounceString } from './bouncestring.js';
+import {Ball} from './ball.js';
 
 class App {
     constructor() {
@@ -37,7 +38,7 @@ class App {
         const yGap = 20;
         const x1 = xGap;
         const x2 = this.stageWidth - xGap;
-        const total = Math.floor((this.stageHeight - yGap).yGap);
+        const total = Math.floor((this.stageHeight - yGap) / yGap);
 
         this.strings = [];
 
@@ -61,7 +62,7 @@ class App {
 
         if (this.strings.length > 0) {
             for (let i = 0; i < this.strings.length; i++) {
-                this.strings[i].animate(this.ctx, this.moveX, this.moveY);
+                this.strings[i].animate(this.ctx, this.ball.x, this.moveY);
             }
         }
 

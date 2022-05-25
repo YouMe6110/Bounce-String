@@ -1,9 +1,11 @@
-const BOUNCE = 0.92;
+import { lineCircle } from "./utils.js";
+
+const BOUNCE = 0.52;
 
 export class BounceString {
     constructor(pos, color) {
         const middleX = ((pos.x2 - pos.x1) / 2) + pos.x1;
-        const middleY = ((pos.y2 - pos.y1) / 2) + pos.y1
+        const middleY = ((pos.y2 - pos.y1) / 2) + pos.y1;
 
         this.points = [
             {
